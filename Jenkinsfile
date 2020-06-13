@@ -30,5 +30,18 @@ pipeline {
 			}
 		    }
 		}   
+		stage ('Pre-Deployment-Testing') {
+		    agent {
+		        label 'buildserver'
+		    }
+		    steps {
+			   sh "'${mvnHome}/bin/mvn' clean test"	
+		    }
+		    post{
+			success{
+			   junit 'target/surefirereports/*.xml'
+			}
+		    }
+		}  
 	}	
 }
