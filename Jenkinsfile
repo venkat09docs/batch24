@@ -71,5 +71,28 @@ pipeline {
 		    }
 		    
 		} 
+		stage ('approve') {
+			agent {
+				label "buildserver"
+            }
+			steps {
+				timeout(time: 7, unit: 'DAYS') {
+					input message: 'Do you want to deploy?', submitter: 'admin'
+				}
+			}
+		}
+		stage ('Prod-Deployment') {
+		    agent {
+		        label 'buildserver'
+		    }
+		    steps {
+			   sh "'${mvnHome}/bin/mvn' clean package"	
+		    }
+		    post{
+			success{
+			   archiveArtifacts '**/*.war'
+			}
+		    }
+		} 
 	}	
 }
