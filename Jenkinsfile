@@ -43,5 +43,18 @@ pipeline {
 			}
 		    }
 		}  
+		stage ('Packaging') {
+		    agent {
+		        label 'buildserver'
+		    }
+		    steps {
+			   sh "'${mvnHome}/bin/mvn' clean package"	
+		    }
+		    post{
+			success{
+			   archiveArtifacts '**/*.war'
+			}
+		    }
+		}  
 	}	
 }
