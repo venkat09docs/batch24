@@ -12,9 +12,9 @@ pipeline {
 		    steps {
 			    git 'https://github.com/venkat09docs/batch24'
 			    stash 'Source'
-			    //script{
+			    script{
 			        mvnHome = tool 'maven3.6'
-			    //}
+			    }
 		    }
 		}    	
 	}	
