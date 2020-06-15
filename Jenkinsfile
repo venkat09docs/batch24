@@ -68,9 +68,7 @@ pipeline {
 		    }
 		    steps {
 			   sh "mv target/*.war target/webapp.war"
-                           //sshCommand remote: remote, command: 'sh /home/centos/tomcta8/bin/shutdown.sh'
-                           sshPut remote: remote, from: 'target/webapp.war', into: '/opt/tomcat8/webapps/'
-                           //sshCommand remote: remote, command: 'sh /home/centos/tomcta8/bin/startup.sh'	
+                           sshPut remote: remote, from: 'target/webapp.war', into: '/opt/tomcat8/webapps/'                           	
 		    }
 		    
 		} 
