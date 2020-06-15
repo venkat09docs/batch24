@@ -67,7 +67,7 @@ pipeline {
 		        label 'buildserver'
 		    }
 		    steps {
-			   mv target/java-maven-1.0.war target/example.war
+			   //mv target/java-maven-1.0.war target/example.war
 			   sshPut remote: remote, from: 'target/example.war', into: '/opt/tomcat/webapps/example.war'	
 		    }
 		    
