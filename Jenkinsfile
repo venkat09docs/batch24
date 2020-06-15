@@ -67,8 +67,10 @@ pipeline {
 		        label 'buildserver'
 		    }
 		    steps {
-			   //mv target/java-maven-1.0.war target/example.war
-			   sshPut remote: remote, from: 'target/java-maven-1.0.war', into: '/opt/tomcat/webapps/example.war'	
+			   sh "mv target/*.war target/webapp.war"
+                           //sshCommand remote: remote, command: 'sh /home/centos/tomcta8/bin/shutdown.sh'
+                           sshPut remote: remote, from: 'target/webapp.war', into: '/opt/tomcta8/webapps/'
+                           //sshCommand remote: remote, command: 'sh /home/centos/tomcta8/bin/startup.sh'	
 		    }
 		    
 		} 
